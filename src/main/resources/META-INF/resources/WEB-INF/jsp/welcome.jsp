@@ -4,9 +4,9 @@
 	</head>
 	<body>
 		<div>
-			Welcome Page.
+			Welcome ${name}.
 		</div>
-		<div>Your name : ${name}</div>
+		<hr>
 		<div><a href="all-todos">Manage</a>Your Todos</div>
 	</body>
 </html>
