@@ -2,8 +2,6 @@ package com.mohamed.springboot.todo;
 
 import java.time.LocalDate;
 
-import org.springframework.stereotype.Component;
-
 public class Todo {
 
 	private int id;
