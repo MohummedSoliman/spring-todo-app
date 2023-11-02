@@ -10,13 +10,13 @@ public class Todo {
 	private LocalDate targetDate;
 	private boolean done;
 
-	public Todo(int id, String userName, String description, LocalDate targetDate, boolean isDone) {
+	public Todo(int id, String userName, String description, LocalDate targetDate, boolean done) {
 		super();
 		this.id = id;
 		this.userName = userName;
 		this.description = description;
 		this.targetDate = targetDate;
-		this.done = isDone;
+		this.done = done;
 	}
 
 	public int getId() {
@@ -55,8 +55,8 @@ public class Todo {
 		return done;
 	}
 
-	public void setDone(boolean isDone) {
-		this.done = isDone;
+	public void setDone(boolean done) {
+		this.done = done;
 	}
 
 	@Override
