@@ -2,7 +2,9 @@ package com.mohamed.springboot.todo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.springframework.stereotype.Service;
 
@@ -29,5 +31,11 @@ public class TodoService {
 						LocalDate targetDate,boolean done) {
 		todos.add(new Todo(++todosCount, name, description,
 				targetDate, done));
+	}
+	
+	public void deleteTodo(int id) {
+		
+		Predicate<? super Todo> prdicate = todo -> todo.getId() == id;
+		todos.removeIf(prdicate);
 	}
 }
