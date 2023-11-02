@@ -46,22 +46,31 @@
 			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
 		</dependency>
 		 
+		 <!-- This For using JSTL-->
 		 <dependency>
 			 <groupId>org.eclipse.jetty</groupId>
 			 <artifactId>glassfish-jstl</artifactId>
 			 <version>11.0.18</version>
 		 </dependency>
 		 
+		 <!-- This Dependency For BootStrap--> 
 		 <dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 			<version>5.1.3</version>
 		</dependency>
  
+ 		<!-- This Dependecny For Jquery-->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
 			<version>3.6.0</version>
+		</dependency>
+		
+		<!-- This for Validation-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		 
 	</dependencies>
