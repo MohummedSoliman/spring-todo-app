@@ -2,7 +2,6 @@ package com.mohamed.springboot.todo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -39,5 +38,10 @@ public class TodoService {
 					filter(todo -> todo.getId() == id).
 					findFirst().
 					get();
+	}
+
+	public void updateTodo(Todo todo) {
+		deleteTodo(todo.getId());
+		todos.add(todo);
 	}
 }
