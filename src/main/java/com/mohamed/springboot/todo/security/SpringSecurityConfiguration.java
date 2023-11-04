@@ -28,12 +28,8 @@ public class SpringSecurityConfiguration {
 
 	private UserDetails createUser(String username, String password) {
 		Function<String, String> passwordEncoder = input -> passwordEncoder().encode(input);
-		UserDetails userDetails = User.builder().
-				passwordEncoder(passwordEncoder).
-				username(username).
-				password(password)
-				.roles("USER", "ADMIN").
-				build();
+		UserDetails userDetails = User.builder().passwordEncoder(passwordEncoder).username(username).password(password)
+				.roles("USER", "ADMIN").build();
 		return userDetails;
 	}
 
@@ -41,16 +37,14 @@ public class SpringSecurityConfiguration {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests(
-					auth -> auth.anyRequest().authenticated()
-				);
+		http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
 		http.formLogin(withDefaults());
-		http.csrf().disable();
-		http.headers().frameOptions().disable();
+		http.csrf(csrf -> csrf.disable());
+		http.headers(header -> header.frameOptions(framOptions -> framOptions.disable()));
 		return http.build();
 	}
-	
+
 }
