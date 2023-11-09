@@ -6,7 +6,9 @@ import java.util.function.Function;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -40,11 +42,19 @@ public class SpringSecurityConfiguration {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
-		http.formLogin(withDefaults());
+		http.authorizeHttpRequests(
+				auth -> auth.requestMatchers(HttpMethod.OPTIONS, " /**").permitAll().anyRequest().authenticated());
+//		http.formLogin(withDefaults());
+		http.httpBasic(withDefaults());
+		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 		http.csrf(csrf -> csrf.disable());
+		// This Frame For Enable h2-console to work on the browser.
 		http.headers(header -> header.frameOptions(framOptions -> framOptions.disable()));
+
+		// Temporary Stop Filter Security API For Test.
+//		http.cors().and().csrf().disable();
 		return http.build();
+
 	}
 
 }

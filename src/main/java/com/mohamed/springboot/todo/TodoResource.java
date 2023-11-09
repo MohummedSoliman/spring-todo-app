@@ -1,6 +1,5 @@
 package com.mohamed.springboot.todo;
 
-import java.net.URI;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+// Disable This controller for test work with JPA.
+//@RestController     
 @CrossOrigin(origins = "http://localhost:3000/")
 public class TodoResource {
 
@@ -21,6 +21,11 @@ public class TodoResource {
 
 	public TodoResource(TodoService todoService) {
 		this.todoService = todoService;
+	}
+	
+	@GetMapping("basicAuth")
+	public String basicAuthCheck() {
+		return "Success" ;
 	}
 
 	@GetMapping("users/{username}/todos")
@@ -46,10 +51,8 @@ public class TodoResource {
 	}
 
 	@PostMapping("/users/{username}/todos")
-	public ResponseEntity<Void> createTodo(@PathVariable String username, @RequestBody Todo todo) {
+	public void createTodo(@PathVariable String username, @RequestBody Todo todo) {
 		todoService.addTodo(username, todo.getDescription(), todo.getTargetDate(), false);
-		URI location = URI.create("http://localhost:3000/users/"+username+"/todos/"+todo.getId());
-		return ResponseEntity.created(location).build();
 	}
 }
 
